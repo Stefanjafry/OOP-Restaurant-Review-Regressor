@@ -52,7 +52,7 @@ from recommended import LinearRegression
 from data import USERS, ALL_RESTAURANTS, CATEGORIES
 from scipy.optimize import minimize
 
-# === Clean plots folder ===
+# Clean plots folder 
 if os.path.exists("plots"):
     shutil.rmtree("plots")
 os.makedirs("plots", exist_ok=True)
