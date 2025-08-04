@@ -66,13 +66,13 @@ class LinearRegression:
         num_categories = len(restaurant.get_categories())
         loc = restaurant.get_location() or location_center
 
-        # --- Distance ---
+        # Distance 
         distance = float(np.linalg.norm(np.array(loc) - location_center)) if loc is not None else 0.0
         if distance_stats is not None:
             dist_mean, dist_std = distance_stats
             distance = (distance - dist_mean) / dist_std if dist_std > 0 else 0.0
 
-        # --- Log transform ---
+        # Log transform 
         log_review_count = np.log1p(rest_review_count)
 
         # --- Interaction features ---
@@ -80,7 +80,7 @@ class LinearRegression:
         interaction_price_cats = price * num_categories
         interaction_user_restcount = user_avg * rest_review_count
 
-        # --- Category features ---
+        # Category features 
         rest_categories = set(restaurant.get_categories())
 
         # Jaccard similarity (user categories vs restaurant categories)
