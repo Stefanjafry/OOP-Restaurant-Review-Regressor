@@ -1,6 +1,6 @@
 Restaurant Review Rating Predictor – Regression-Based ML System in Python (No Machine Learning Libraries)
 
-This project implements a complete machine learning system in pure Python to predict restaurant review ratings using custom-built regression models. It is designed around strong Object-Oriented Programming (OOP) principles and a fully modular architecture. The entire system is built from scratch using only NumPy — no scikit-learn, no TensorFlow, no PyTorch.
+This project implements a complete machine learning system in pure Python to predict restaurant review ratings using custom-built regression models. It is designed around strong Object-Oriented Programming (OOP) principles and a fully modular architecture. The entire system is built from scratch using only NumPy.
 
 The goal is to model both individual user preferences and general review behavior by learning from user-restaurant-review triples. The system supports per-user regression models as well as a global model trained across users.
 
