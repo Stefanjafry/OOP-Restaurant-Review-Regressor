@@ -1,96 +1,122 @@
-Restaurant Review Rating Predictor – Regression-Based ML System in Python (No Machine Learning Libraries)
+Restaurant Review Rating Predictor Regression-Based ML System in Python
 
-This project implements a complete machine learning system in pure Python to predict restaurant review ratings using custom-built regression models. It is designed around strong Object-Oriented Programming (OOP) principles and a fully modular architecture. The entire system is built from scratch using only NumPy.
+This project implements a complete restaurant rating prediction system using Object-Oriented Programming (OOP) and mathematical regression techniques. The system models user preferences and restaurant metadata to predict review ratings using hand-crafted feature engineering and linear regression, all built from scratch using Python and NumPy only (no scikit-learn or other ML libraries).
 
-The goal is to model both individual user preferences and general review behavior by learning from user-restaurant-review triples. The system supports per-user regression models as well as a global model trained across users.
+Overview:
 
-Key Features:
+The application showcases:
 
-Object-Oriented Design:
+A fully modular and object-oriented design for users, restaurants, and reviews
 
-Fully encapsulated abstractions for Review, Restaurant, and User
+Manual implementation of linear regression, ridge regression, and Huber regression
 
-Clean modular class structure, designed for scalability and maintainability
+End-to-end data ingestion from real-world JSON datasets
 
-Robust handling of restaurant features, user metadata, and review histories
+Feature engineering including interaction terms, log transforms, and geospatial normalization
 
-Custom Regression Models (No ML Libraries Used):
+Model evaluation and visualization with R², MAE, RMSE, and predicted vs. actual rating plots
 
-Manual implementation of Ordinary Least Squares (OLS) regression
+Key Components:
 
-Ridge Regression with L2 regularization
+Review: Represents a single user’s rating of a restaurant, storing the restaurant name and numerical score.
 
-Huber Regression for robust fitting and outlier resistance
+Restaurant: Encapsulates all metadata about a restaurant, including location (latitude/longitude), category list, price, and all received reviews. Computes internal stats like average rating and category count.
 
-Closed-form solution for each model using matrix algebra and regularization
+User: Represents a review-writing user. Stores reviews and exposes functionality to compute average rating, number of reviews, and review history.
 
-Feature Engineering and Interaction Terms:
+LinearRegression (in recommended.py):
 
-Raw features: restaurant mean rating, price, review count, number of categories
+Implements closed-form OLS regression with optional Ridge or Huber loss
 
-Interaction terms: price multiplied by mean rating, price multiplied by category count, and more
+Trains user-specific and global models using NumPy matrix algebra
+
+Supports robust fitting, outlier handling, and feature normalization
+
+Feature Engineering:
+
+Raw features: price, category count, mean rating, review count
+
+Transforms: log(review_count), z-scored geographic distance from user center
+
+Interactions: price × rating, price × category count, user average × review count
 
 Jaccard similarity between user and restaurant categories
 
-Log-transformed review count for scale normalization
-
-Distance normalization between user’s central location and restaurant location (with z-score scaling)
+One-hot category encoding with inverse frequency weighting
 
 Evaluation and Visualization:
 
-Manual calculation of evaluation metrics: R-squared (R²), Mean Absolute Error (MAE), and Root Mean Squared Error (RMSE)
+R², MAE, RMSE computed manually for each user and the global model
 
-Automatic plotting of predicted vs. actual review ratings for each user using matplotlib
+Plots of predicted vs. actual ratings using matplotlib
 
-Global plot across all users who meet a review count threshold
+Plots are displayed interactively and saved to disk (./plots/)
 
-Output plots are generated in the "plots" folder and cleaned with each new execution
+Data Pipeline (in data.py):
 
-Dataset Integration:
+Parses and links three JSON datasets: users.json, reviews.json, and restaurants.json
 
-JSON-based ingestion of Yelp-style review datasets
+Converts raw JSON objects into structured Python classes
 
-Restaurant-level metadata: name, price, categories, coordinates, reviews
+Associates reviews with both users and restaurants
 
-User-level metadata: name, review history, average rating
+Computes global category set and user category preferences
 
-Review-level data: restaurant link, rating given
+Utilities (in utilities.py):
 
-Scalable Evaluation:
+Provides functional-style tools like map_and_filter, sorted_restaurants, and average calculations
 
-Batch processing of all eligible users
+File Structure:
 
-Ability to control which users are modeled using a dynamic review count threshold
+datafolder/
+users.json : User profiles and metadata
+reviews.json : Individual review records
+restaurants.json : Restaurant attributes, prices, coordinates, and categories
 
-Efficient design with data preloading and mapping
+main.py : Main program launcher and evaluation script
+recommended.py : Linear, Ridge, and Huber regression implementation with feature generation
+abstractions.py : Data models for User, Restaurant, and Review
+utilities.py : Functional helpers and aggregate operations
+data.py : Dataset loading, linkage, and cleaning logic
+README.md : Project documentation (this file)
+requirements.txt : Python dependencies (NumPy + Matplotlib)
+.gitignore : Common build artifacts and data exclusions
 
-Code Structure:
+Setup Instructions:
 
-main.py: end-to-end controller for training and evaluating models
+Clone the repository:
 
-abstractions.py: clean data classes for Users, Restaurants, and Reviews
+git clone https://github.com/your-username/restaurant-review-regressor.git
+cd restaurant-review-regressor
 
-recommended.py: contains regression logic and manual training code
+(Optional) Create and activate a virtual environment:
 
-data.py: handles JSON I/O and linkage between users, reviews, and restaurants
+python -m venv .venv
+On Windows: .venv\Scripts\activate
+On Mac/Linux: source .venv/bin/activate
 
-utilities.py: helper functions for sorting, filtering, and aggregation
+Install dependencies:
 
-No External ML Libraries:
+pip install -r requirements.txt
 
-All modeling logic is implemented using basic linear algebra via NumPy
+Running the Project:
 
-No scikit-learn, no external fitting libraries — just pure mathematics and matrix operations
+To launch the model evaluation and visualization script, run:
 
+python main.py
 
-How to Use:
+You will be prompted to enter a minimum number of reviews per user (e.g., 5). The system will then:
 
-Install dependencies from requirements.txt
+Train models for all eligible users
 
-Place your dataset files (users.json, reviews.json, restaurants.json) into the datafolder directory
+Evaluate prediction accuracy (R², MAE, RMSE)
 
-Run main.py and provide a minimum review count when prompted
+Train and evaluate a global model
 
-Results will be displayed interactively and saved as plots
+Plot predicted vs. actual ratings
 
-License: MIT License
+Save outputs to ./plots/ and predicted_ratings.csv
+
+License:
+
+This project is licensed under the MIT License. You are free to use, modify, and distribute the code for personal, academic, or commercial use.
