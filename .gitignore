@@ -1,0 +1,25 @@
+# === Python cache and compiled files ===
+__pycache__/
+*.py[cod]
+*.pyo
+
+# === Virtual environments ===
+.venv/
+
+# === PyCharm project settings ===
+.idea/
+
+# === OS junk ===
+.DS_Store
+Thumbs.db
+
+# === Plots/output artifacts ===
+plots/
+
+# === Logs or temp files ===
+*.log
+
+# === Build artifacts (not used yet but future-proof) ===
+*.egg-info/
+dist/
+build/
