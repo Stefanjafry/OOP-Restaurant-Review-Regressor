@@ -93,7 +93,7 @@ def load_data(user_dataset, review_dataset, restaurant_dataset):
     return users, reviews, list(restaurants.values())
 
 
-# === Load + Expose Global Variables ==================================
+# Load + Expose Global Variables
 
 USERS, REVIEWS, ALL_RESTAURANTS = load_data('users.json', 'reviews.json', 'restaurants.json')
 
