@@ -1,3 +1,16 @@
+"""
+Data Loading Module
+
+Parses JSON files containing user, restaurant, and review data and constructs
+Python objects (`User`, `Restaurant`, `Review`) used throughout the system.
+
+This module initializes:
+- USERS: list of all users
+- REVIEWS: all review objects
+- ALL_RESTAURANTS: dict of restaurant objects keyed by name
+- CATEGORIES: set of all restaurant categories
+"""
+
 import collections
 import os
 from json import loads, dumps

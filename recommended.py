@@ -1,3 +1,51 @@
+"""
+recommended.py
+==============
+
+This module defines a custom `LinearRegression` class used to predict user-specific
+restaurant review ratings based on rich engineered features.
+
+The regression is implemented from scratch using NumPy and supports:
+- Feature normalization (z-score)
+- Ridge-like numerical stability with λ-regularization
+- R² score computation
+- User-personalized feature engineering
+- Robust inference and evaluation
+
+Feature Engineering Highlights:
+-------------------------------
+- Restaurant features:
+    - Mean rating
+    - Price level
+    - Review count (raw and log-transformed)
+    - Number of categories
+    - Jaccard similarity with user preferences
+    - Euclidean distance to city center (normalized)
+- Interaction terms:
+    - price × rating
+    - price × category count
+    - user_avg × rest_review_count
+- Category embeddings:
+    - Inverse-frequency weighted one-hot vectors across known categories
+
+Main Class:
+-----------
+LinearRegression:
+    - train(): fits a linear model to a user's reviews.
+    - predict(): predicts the user's rating for a restaurant.
+    - rate_all(): returns predicted and actual ratings for all restaurants.
+
+Dependencies:
+-------------
+- NumPy
+- Custom data abstractions: User, Restaurant, Review (imported from `abstractions.py`)
+
+Usage:
+------
+The LinearRegression model is used inside `main.py` to generate per-user models and evaluate
+prediction performance, both individually and globally.
+"""
+
 import numpy as np
 from abstractions import Restaurant, User, Review
 

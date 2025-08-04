@@ -1,4 +1,13 @@
-"""Data Abstractions"""
+"""Data Abstractions
+
+Defines core data structures for restaurant reviews:
+- Review: a user’s rating for a restaurant
+- Restaurant: metadata and reviews for a business
+- User: a collection of reviews written by a user
+
+Used across the regression system to access structured data for
+model training, prediction, and evaluation.
+"""
 
 class Review:
     def __init__(self, restaurant_name: str, rating: float):

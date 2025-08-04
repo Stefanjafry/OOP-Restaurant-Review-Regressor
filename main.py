@@ -1,3 +1,45 @@
+"""
+main.py
+=======
+
+This is the entry point for the Restaurant Review Regression system.
+
+It evaluates how well restaurant review ratings can be predicted using
+object-oriented models of users, restaurants, and reviews.
+
+Key Features:
+-------------
+- Trains per-user regression models using custom OLS/Ridge/Huber regression.
+- Trains a global regression model across all users.
+- Extracts restaurant features (location, categories, review counts, etc.).
+- Generates scatter plots for each user and the global model:
+    - Shows predicted vs. actual ratings
+    - Annotates R², MAE, and RMSE on each plot
+    - Color-coded by residual magnitude
+- Automatically deletes and regenerates the `./plots/` folder each run.
+- Exports all predictions to `predicted_ratings.csv`.
+
+Workflow:
+---------
+1. Users with ≥ N reviews (user-defined) are selected for plotting.
+2. For each eligible user:
+   - A personalized model is trained on their reviews.
+   - A plot is generated showing prediction accuracy.
+3. A global model is trained using all review data (with robust Huber loss).
+4. Evaluation metrics (R², MAE, RMSE) are printed and visualized.
+
+Modules Used:
+-------------
+- `abstractions.py`: Defines User, Restaurant, and Review objects.
+- `recommended.py`: Contains regression models (OLS, Ridge, Huber).
+- `data.py`: Loads and links user, review, and restaurant data.
+- `utilities.py`: Optional helper functions.
+- Standard Python libraries: NumPy, Matplotlib, CSV, Concurrency.
+Author:
+-------
+Stefan Jafry, 2025
+"""
+
 import numpy as np
 import csv
 import os
