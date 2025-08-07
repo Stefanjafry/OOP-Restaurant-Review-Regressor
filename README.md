@@ -86,7 +86,7 @@ Setup Instructions:
 
 Clone the repository:
 
-git clone https://github.com/your-username/restaurant-review-regressor.git
+git clone https://github.com/Stefanjafry/restaurant-review-regressor.git
 cd restaurant-review-regressor
 
 (Optional) Create and activate a virtual environment:
